@@ -3,6 +3,7 @@
 import { useMemo, useState, useTransition } from "react";
 import type { Rsvp, Wish } from "@/lib/supabase/types";
 import VerifiedBadge from "@/components/VerifiedBadge";
+import InviteLinks from "./InviteLinks";
 import {
   approveWish,
   deleteRsvp,
@@ -40,7 +41,7 @@ function download(filename: string, content: string) {
 
 export default function AdminDashboard({ initial }: { initial: AdminData }) {
   const [data, setData] = useState<AdminData>(initial);
-  const [tab, setTab] = useState<"rsvp" | "wishes">("rsvp");
+  const [tab, setTab] = useState<"rsvp" | "wishes" | "links">("rsvp");
   const [pending, startTransition] = useTransition();
 
   const refresh = () =>
@@ -95,7 +96,7 @@ export default function AdminDashboard({ initial }: { initial: AdminData }) {
 
       {/* Tabs */}
       <div className="mt-8 flex gap-2 border-b border-gold/20">
-        {(["rsvp", "wishes"] as const).map((t) => (
+        {(["rsvp", "wishes", "links"] as const).map((t) => (
           <button
             key={t}
             onClick={() => setTab(t)}
@@ -105,7 +106,7 @@ export default function AdminDashboard({ initial }: { initial: AdminData }) {
                 : "border-transparent text-cream-dim hover:text-cream"
             }`}
           >
-            {t === "rsvp" ? "Kehadiran" : "Ucapan"}
+            {t === "rsvp" ? "Kehadiran" : t === "wishes" ? "Ucapan" : "Link Undangan"}
           </button>
         ))}
       </div>
@@ -179,7 +180,7 @@ export default function AdminDashboard({ initial }: { initial: AdminData }) {
             </table>
           </div>
         </section>
-      ) : (
+      ) : tab === "wishes" ? (
         <section className="mt-4 space-y-6">
           <div className="flex justify-end">
             <button
@@ -271,6 +272,8 @@ export default function AdminDashboard({ initial }: { initial: AdminData }) {
             </ul>
           </div>
         </section>
+      ) : (
+        <InviteLinks />
       )}
     </div>
   );

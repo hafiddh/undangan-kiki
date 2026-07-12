@@ -12,7 +12,8 @@ create table if not exists public.rsvps (
   attending   boolean not null,
   guest_count int not null default 1,
   user_id     uuid references auth.users(id) on delete set null,
-  verified    boolean generated always as (user_id is not null) stored
+  verified    boolean generated always as (user_id is not null) stored,
+  ip_hash     text
 );
 
 create table if not exists public.wishes (
@@ -23,11 +24,16 @@ create table if not exists public.wishes (
   user_id     uuid references auth.users(id) on delete set null,
   avatar_url  text,
   verified    boolean generated always as (user_id is not null) stored,
-  approved    boolean not null default false
+  approved    boolean not null default false,
+  ip_hash     text
 );
 
 create index if not exists wishes_approved_created_idx
   on public.wishes (approved, created_at desc);
+create index if not exists rsvps_ip_created_idx
+  on public.rsvps (ip_hash, created_at desc);
+create index if not exists wishes_ip_created_idx
+  on public.wishes (ip_hash, created_at desc);
 
 -- ---------- Row Level Security ----------
 

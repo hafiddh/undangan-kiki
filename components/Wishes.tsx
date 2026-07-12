@@ -12,6 +12,24 @@ import type { Wish } from "@/lib/supabase/types";
 
 type Profile = { name: string; avatarUrl: string | null } | null;
 
+function fmtWaktu(iso: string) {
+  const d = new Date(iso);
+  const tz = "Asia/Jakarta";
+  const tanggal = d.toLocaleDateString("id-ID", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: tz,
+  });
+  const waktu =
+    d.toLocaleTimeString("id-ID", {
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZone: tz,
+    }) + " WIB";
+  return { tanggal, waktu };
+}
+
 export default function Wishes() {
   const toast = useToast();
   const [wishes, setWishes] = useState<Wish[]>([]);
@@ -20,6 +38,7 @@ export default function Wishes() {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
+  const [hp, setHp] = useState(""); // honeypot anti-bot
 
   const loadWishes = () => {
     const supabase = createClient();
@@ -51,7 +70,11 @@ export default function Wishes() {
     const finalName = profile?.name ?? name.trim();
     if (!finalName || !message.trim()) return;
     setBusy(true);
-    const res = await submitWish({ name: finalName, message: message.trim() });
+    const res = await submitWish({
+      name: finalName,
+      message: message.trim(),
+      hp,
+    });
     setBusy(false);
     if (!res.ok) {
       toast(res.error, "error");
@@ -71,6 +94,17 @@ export default function Wishes() {
       <h2 className="section-title">Wishes</h2>
       <div className="gold-panel mt-8 px-6 py-8">
         <form onSubmit={submit} className="space-y-3">
+          {/* Honeypot — tersembunyi dari manusia, hanya bot yang mengisi */}
+          <input
+            type="text"
+            name="website"
+            value={hp}
+            onChange={(e) => setHp(e.target.value)}
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden
+            className="absolute left-[-9999px] h-0 w-0 opacity-0"
+          />
           {profile ? (
             <div className="flex items-center justify-between rounded-xl border border-gold/30 bg-void/40 px-4 py-2.5">
               <span className="flex items-center gap-2 text-sm text-cream">
@@ -129,20 +163,26 @@ export default function Wishes() {
                 key={wish.id}
                 className="rounded-xl border border-gold/20 bg-void/40 p-4"
               >
-                <p className="flex items-center gap-2 text-sm font-semibold text-gold-bright">
-                  {wish.avatar_url && (
-                    <Image
-                      src={wish.avatar_url}
-                      alt=""
-                      width={24}
-                      height={24}
-                      className="h-6 w-6 rounded-full object-cover"
-                      unoptimized
-                    />
-                  )}
-                  {wish.name}
-                  {wish.verified && <VerifiedBadge showLabel={false} />}
-                </p>
+                <div className="flex items-start justify-between gap-2">
+                  <p className="flex min-w-0 items-center gap-2 text-sm font-semibold text-gold-bright">
+                    {wish.avatar_url && (
+                      <Image
+                        src={wish.avatar_url}
+                        alt=""
+                        width={24}
+                        height={24}
+                        className="h-6 w-6 rounded-full object-cover"
+                        unoptimized
+                      />
+                    )}
+                    {wish.name}
+                    {wish.verified && <VerifiedBadge showLabel={false} />}
+                  </p>
+                  <div className="shrink-0 text-right text-[0.65rem] leading-tight text-cream-dim/60">
+                    <span className="block">{fmtWaktu(wish.created_at).tanggal}</span>
+                    <span className="block">{fmtWaktu(wish.created_at).waktu}</span>
+                  </div>
+                </div>
                 <p className="mt-1 text-sm leading-relaxed text-cream-dim">
                   {wish.message}
                 </p>
