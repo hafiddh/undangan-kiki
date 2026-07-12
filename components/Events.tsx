@@ -1,5 +1,5 @@
 import { wedding, type WeddingEvent } from "@/data/wedding";
-import Reveal from "./Reveal";
+import Section from "./Section";
 
 function RingIcon() {
   return (
@@ -59,13 +59,13 @@ function EventCard({ event }: { event: WeddingEvent }) {
 
 export default function Events() {
   return (
-    <Reveal id="acara" className="px-6 pt-20">
+    <Section id="acara" tone="void" divider="svg" corner="bunga" className="px-6">
       <h2 className="section-title">Detail Acara</h2>
       <div className="mt-8 space-y-6">
         {wedding.events.map((event) => (
           <EventCard key={event.name} event={event} />
         ))}
       </div>
-    </Reveal>
+    </Section>
   );
 }

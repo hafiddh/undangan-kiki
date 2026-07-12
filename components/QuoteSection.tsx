@@ -1,9 +1,9 @@
 import { wedding } from "@/data/wedding";
-import Reveal from "./Reveal";
+import Section from "./Section";
 
 export default function QuoteSection() {
   return (
-    <Reveal className="px-6 pt-16">
+    <Section tone="panel" texture divider="svg" corner="vine" className="px-6">
       <figure className="gold-panel relative px-7 py-10 text-center">
         <span
           className="gold-text absolute -top-5 left-1/2 -translate-x-1/2 text-6xl leading-none"
@@ -22,6 +22,6 @@ export default function QuoteSection() {
           {wedding.quote.source}
         </figcaption>
       </figure>
-    </Reveal>
+    </Section>
   );
 }

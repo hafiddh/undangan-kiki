@@ -37,7 +37,7 @@ export default function Cover({
         width={340}
         height={420}
         aria-hidden
-        className="pointer-events-none absolute left-0 top-0 z-20 w-28 -scale-100 opacity-60"
+        className="pointer-events-none absolute left-0 top-0 z-20 w-20 -scale-100 opacity-60"
       />
       <Image
         src="/images/bunga-atas-korner.webp"
@@ -45,7 +45,7 @@ export default function Cover({
         width={340}
         height={420}
         aria-hidden
-        className="pointer-events-none absolute right-0 top-0 z-20 w-28 -scale-y-100 opacity-60"
+        className="pointer-events-none absolute right-0 top-0 z-20 w-20 -scale-y-100 opacity-60"
       />
       <Image
         src="/images/bunga-atas-korner.webp"
@@ -53,7 +53,7 @@ export default function Cover({
         width={340}
         height={420}
         aria-hidden
-        className="pointer-events-none absolute bottom-0 left-0 z-20 w-36 -scale-x-100 opacity-60"
+        className="pointer-events-none absolute bottom-0 left-0 z-20 w-26 -scale-x-100 opacity-60"
       />
       <Image
         src="/images/bunga-atas-korner.webp"
@@ -61,7 +61,7 @@ export default function Cover({
         width={340}
         height={420}
         aria-hidden
-        className="pointer-events-none absolute bottom-0 right-0 z-20 w-36 opacity-60"
+        className="pointer-events-none absolute bottom-0 right-0 z-20 w-26 opacity-60"
       />
 
       {/* Kaligrafi Bismillah atas */}
@@ -75,15 +75,15 @@ export default function Cover({
       />
 
       {/* Judul atas — The Wedding Of + nama + tanggal */}
-      <div className="relative z-20 mt-5 flex flex-col items-center px-6">
+      <div className="relative z-20 mt-2 flex flex-col items-center px-2">
         <p
-          className="animate-fade-up text-[0.7rem] uppercase tracking-[0.4em] text-cream/85"
+          className="animate-fade-up text-[0.6rem] uppercase tracking-[0.4em] text-cream/85"
           style={{ animationDelay: "0.1s" }}
         >
           The Wedding Of
         </p>
         <h1
-          className="gold-text animate-fade-up mt-0.5 flex items-baseline justify-center gap-1 overflow-visible px-4 pt-6 pb-2 leading-[1.35]"
+          className="gold-text animate-fade-up mt-0.5 flex items-baseline justify-center gap-1 overflow-visible px-4 py-2 leading-[1.35]"
           style={{ fontFamily: "var(--font-script)", animationDelay: "0.2s" }}
         >
           <span className="px-1 text-[3.5rem]">{wedding.bride.nickname}</span>
@@ -91,7 +91,7 @@ export default function Cover({
           <span className="px-1 text-[3.5rem]">{wedding.groom.nickname}</span>
         </h1>
         <p
-          className="animate-fade-up -mt-1 text-xl tracking-[0.4em] text-gold"
+          className="animate-fade-up -mt-2 text-xl tracking-[0.4em] text-gold"
           style={{ fontFamily: "var(--font-display)", animationDelay: "0.3s" }}
         >
           {wedding.dateDisplay}
@@ -119,7 +119,7 @@ export default function Cover({
       /> */}
 
       {/* Konten bawah */}
-      <div className="relative z-20 mt-auto flex flex-col items-center px-6 pb-12">
+      <div className="relative z-20 mt-auto flex flex-col items-center px-6 pb-10">
         <Image
           src="/images/pembatas-bawah.webp"
           alt=""
@@ -130,7 +130,7 @@ export default function Cover({
         />
 
         <div
-          className="animate-fade-up mt-6"
+          className="animate-fade-up mt-2"
           style={{ animationDelay: "0.5s" }}
         >
           <p className="text-[0.7rem] uppercase tracking-[0.35em] text-gold">
@@ -141,7 +141,7 @@ export default function Cover({
 
         <button
           onClick={onOpen}
-          className="shimmer animate-fade-up mt-7 rounded-full px-9 py-3 text-sm font-bold tracking-widest text-void shadow-[0_0_30px_rgba(212,175,55,0.4)] transition-transform hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
+          className="shimmer animate-fade-up mt-5 rounded-full px-9 py-3 text-sm font-bold tracking-widest text-void shadow-[0_0_30px_rgba(212,175,55,0.4)] transition-transform hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
           style={{ animationDelay: "0.7s" }}
         >
           BUKA UNDANGAN ♥

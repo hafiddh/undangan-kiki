@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { wedding, type GiftAccount } from "@/data/wedding";
-import Reveal from "./Reveal";
+import Section from "./Section";
 
 function AccountCard({ account }: { account: GiftAccount }) {
   const [copied, setCopied] = useState(false);
@@ -41,7 +41,7 @@ function AccountCard({ account }: { account: GiftAccount }) {
 
 export default function Gift() {
   return (
-    <Reveal id="gift" className="px-6 pt-20">
+    <Section id="gift" tone="void" divider="webp" corner="bunga" className="px-6">
       <h2 className="section-title">Wedding Gift</h2>
       <div className="gold-panel mt-8 px-6 py-8">
         <p className="text-center text-sm leading-relaxed text-cream-dim">
@@ -54,6 +54,6 @@ export default function Gift() {
           ))}
         </div>
       </div>
-    </Reveal>
+    </Section>
   );
 }

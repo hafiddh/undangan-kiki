@@ -9,6 +9,8 @@
   --gold-dim: #8a7440;
   --cream: #e8dcc0;
   --cream-dim: #a99e85;
+  --panel-warm: #17110a;
+  --panel-warm-2: #1f1710;
 }
 
 @theme inline {
@@ -156,14 +158,104 @@ body {
 /* Reveal on scroll — di-toggle IntersectionObserver */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(28px) scale(0.98);
+  filter: blur(6px);
   transition:
-    opacity 0.8s ease-out,
-    transform 0.8s ease-out;
+    opacity 0.9s ease-out,
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.9s ease-out;
 }
 .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+/* ============================================================
+   PREMIUM SECTIONS — alternating tone, texture, grain, ornaments
+   ============================================================ */
+
+/* Tone dasar tiap section. void = gelap pekat, panel = coklat hangat */
+.tone-void {
+  background:
+    radial-gradient(
+      120% 60% at 50% 0%,
+      color-mix(in srgb, var(--gold) 5%, transparent),
+      transparent 60%
+    ),
+    var(--void);
+}
+.tone-panel {
+  background:
+    radial-gradient(
+      120% 70% at 50% 0%,
+      color-mix(in srgb, var(--gold-bright) 7%, transparent),
+      transparent 65%
+    ),
+    linear-gradient(180deg, var(--panel-warm-2), var(--panel-warm));
+}
+
+/* Tekstur halus: grain noise + motif emas samar. Overlay tipis. */
+.section-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+  background-image:
+    radial-gradient(
+      circle at 50% 0,
+      color-mix(in srgb, var(--gold) 6%, transparent),
+      transparent 45%
+    ),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'><g fill='none' stroke='%23d4af37' stroke-width='0.4' opacity='0.18'><path d='M20 6c4 4 4 10 0 14-4-4-4-10 0-14z'/><circle cx='20' cy='20' r='1'/></g></svg>");
+  background-size:
+    100% 100%,
+    120px 120px;
+}
+
+/* Film grain global — di atas seluruh body, sangat tipis */
+.grain {
+  position: absolute;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* Border hairline emas dengan shimmer bergerak pelan */
+.hairline-gold {
+  position: relative;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--panel), var(--panel)) padding-box,
+    linear-gradient(
+        115deg,
+        var(--gold-dim) 20%,
+        var(--gold-bright) 50%,
+        var(--gold-dim) 80%
+      )
+      border-box;
+  background-size:
+    auto,
+    200% auto;
+  animation: shimmer-sweep 6s linear infinite;
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1.5deg);
+  }
+}
+.animate-drift {
+  animation: drift 9s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -172,13 +264,16 @@ body {
   }
   .animate-fade-up,
   .animate-float,
+  .animate-drift,
   .shimmer,
+  .hairline-gold,
   .sparkle {
     animation: none;
   }
   .reveal {
     opacity: 1;
     transform: none;
+    filter: none;
     transition: none;
   }
 }

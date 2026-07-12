@@ -1,10 +1,10 @@
 import { wedding } from "@/data/wedding";
 import { Divider } from "./Ornament";
-import Reveal from "./Reveal";
+import Section from "./Section";
 
 export default function Hero() {
   return (
-    <Reveal id="home" className="px-6 pt-16 text-center">
+    <Section id="home" tone="void" divider={false} className="px-6 pt-4 text-center">
       <p className="text-[0.65rem] font-semibold uppercase tracking-[0.45em] text-gold">
         Kami Mengundang Anda
       </p>
@@ -19,6 +19,6 @@ export default function Hero() {
       <p className="mt-3 text-sm tracking-widest text-cream-dim">
         {wedding.dateLong}
       </p>
-    </Reveal>
+    </Section>
   );
 }

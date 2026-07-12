@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from "react";
 import { wedding } from "@/data/wedding";
-import Reveal from "./Reveal";
+import Section from "./Section";
 
 export default function Gallery() {
   const [open, setOpen] = useState<number | null>(null);
@@ -17,7 +17,7 @@ export default function Gallery() {
   }, [open]);
 
   return (
-    <Reveal id="gallery" className="px-6 pt-20">
+    <Section id="gallery" tone="void" divider="webp" className="px-6">
       <h2 className="section-title">Galeri</h2>
       <p
         className="mt-4 text-center text-sm italic text-cream-dim"
@@ -64,6 +64,6 @@ export default function Gallery() {
           </button>
         </div>
       )}
-    </Reveal>
+    </Section>
   );
 }

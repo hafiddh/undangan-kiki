@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Reveal from "./Reveal";
+import Section from "./Section";
 
 type RsvpEntry = { name: string; attending: boolean; count: number };
 
@@ -37,7 +37,7 @@ export default function Rsvp() {
     .reduce((sum, e) => sum + e.count, 0);
 
   return (
-    <Reveal id="rsvp" className="px-6 pt-20">
+    <Section id="rsvp" tone="panel" texture divider="svg" className="px-6">
       <h2 className="section-title">RSVP</h2>
       <div className="gold-panel mt-8 px-6 py-8">
         <p className="text-center text-sm text-cream-dim">
@@ -119,6 +119,6 @@ export default function Rsvp() {
           </form>
         )}
       </div>
-    </Reveal>
+    </Section>
   );
 }

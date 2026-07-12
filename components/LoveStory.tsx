@@ -1,9 +1,9 @@
 import { wedding } from "@/data/wedding";
-import Reveal from "./Reveal";
+import Section from "./Section";
 
 export default function LoveStory() {
   return (
-    <Reveal className="px-6 pt-20">
+    <Section tone="panel" texture divider="svg" corner="vine" className="px-6">
       <h2 className="section-title">Love Story</h2>
       <div className="gold-panel mt-8 px-6 py-8">
         <ol className="relative space-y-8 border-l border-gold/30 pl-6">
@@ -29,6 +29,6 @@ export default function LoveStory() {
           ))}
         </ol>
       </div>
-    </Reveal>
+    </Section>
   );
 }

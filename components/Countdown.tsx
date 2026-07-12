@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { wedding } from "@/data/wedding";
-import Reveal from "./Reveal";
+import Section from "./Section";
 
 type Parts = { hari: number; jam: number; menit: number; detik: number };
 
@@ -35,7 +35,7 @@ export default function Countdown() {
   ];
 
   return (
-    <Reveal className="px-6 pt-16">
+    <Section tone="panel" texture divider="svg" className="px-6">
       <h2 className="section-title">Menuju Hari Bahagia</h2>
       <p
         className="mt-4 text-center text-lg italic text-cream-dim"
@@ -58,6 +58,6 @@ export default function Countdown() {
           </div>
         ))}
       </div>
-    </Reveal>
+    </Section>
   );
 }

@@ -25,6 +25,8 @@ export default function InvitationShell({
 
   return (
     <div className="relative mx-auto min-h-dvh max-w-md bg-void shadow-[0_0_80px_rgba(212,175,55,0.06)]">
+      {/* Film grain global — tekstur halus di atas seluruh undangan */}
+      <div className="grain" aria-hidden />
       {!opened ? (
         <Cover guest={guest} onOpen={() => setOpened(true)} />
       ) : (

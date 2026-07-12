@@ -9,14 +9,18 @@ export const wedding = {
   bride: {
     nickname: "Kiki",
     fullName: "Nur Chulukiah Munawaroh",
-    parents: "Putri dari Bapak Fulan & Ibu Fulanah",
+    relation: "Putri bungsu dari", // label relasi di kartu couple
+    parents: "Bapak Fulan & Ibu Fulanah",
+    location: "", // opsional — mis. "dari Surabaya"
     instagram: "kiki.example",
     photo: "/images/bride.svg",
   },
   groom: {
     nickname: "Hafid",
     fullName: "Hafid Dwi Hibatullah",
-    parents: "Putra dari Bapak Ismuaji Sodiq & Ibu Siti Maimunah",
+    relation: "Putra dari",
+    parents: "Bapak Ismuaji Sodiq & Ibu Siti Maimunah",
+    location: "",
     instagram: "hafid.example",
     photo: "/images/groom.svg",
   },
