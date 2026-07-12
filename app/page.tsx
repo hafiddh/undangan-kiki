@@ -49,6 +49,10 @@ export default async function Home({
         <p className="mt-2 text-xs tracking-widest text-cream-dim">
           Terima kasih atas doa &amp; restu Anda
         </p>
+        <p className="mt-6 text-[0.7rem] text-cream-dim/50">
+          Dibuat dengan <span className="ml-0.75 mr-0.75 text-gold">&hearts;</span> oleh
+          Hafid D.H
+        </p>
       </footer>
     </InvitationShell>
   );

@@ -7,12 +7,14 @@ type Row = { name: string; url: string };
 
 function waMessage(name: string, url: string) {
   return (
-    `Assalamu'alaikum Warahmatullahi Wabarakatuh\n\n` +
+    `Assalamu'alaikum Wr. Wb.\n\n` +
     `Kepada Yth.\nBapak/Ibu/Saudara/i *${name}*\n\n` +
     `Tanpa mengurangi rasa hormat, kami mengundang Anda untuk hadir di acara pernikahan kami:\n\n` +
     `*${wedding.groom.nickname} & ${wedding.bride.nickname}*\n${wedding.dateLong}\n\n` +
     `Berikut link undangan lengkapnya:\n${url}\n\n` +
-    `Merupakan kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir. Terima kasih.`
+    `Merupakan kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir. \n\n` +
+    `Terima kasih. \n\n` +
+    `Wassalamu'alaikum Wr. Wb.`
   );
 }
 
@@ -45,7 +47,7 @@ export default function InviteLinks() {
         setCopiedIdx(idx);
         setTimeout(() => setCopiedIdx(null), 1500);
       }
-    } catch {}
+    } catch { }
   };
 
   const copyAll = () =>
