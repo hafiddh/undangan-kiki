@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { wedding } from "@/data/wedding";
-import { Divider } from "./Ornament";
 import Section from "./Section";
 import RandomSparkles from "./RandomSparkles";
 
@@ -51,7 +50,14 @@ export default function Hero() {
         {wedding.bride.nickname} <span className="italic">&amp;</span>{" "}
         {wedding.groom.nickname}
       </h2> */}
-      <Divider className="mx-auto mt-4 w-40" />
+      <Image
+        src="/images/pembatas-1.webp"
+        alt=""
+        width={320}
+        height={40}
+        aria-hidden
+        className="mx-auto mt-5 w-44 opacity-80"
+      />
       <p className="mt-3 text-sm tracking-widest text-cream-dim">
         {wedding.dateLong}
       </p>

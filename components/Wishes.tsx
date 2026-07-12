@@ -57,7 +57,7 @@ export default function Wishes() {
   };
 
   return (
-    <Section id="wishes" tone="panel" texture divider="svg" corner="vine" className="px-6">
+    <Section id="wishes" tone="panel" texture divider="pembatas-4" flower={1} flowerSide="left" className="px-6">
       <h2 className="section-title">Wishes</h2>
       <div className="gold-panel mt-8 px-6 py-8">
         <form onSubmit={submit} className="space-y-3">

@@ -121,7 +121,7 @@ export default function Cover({
       {/* Konten bawah */}
       <div className="relative z-20 mt-auto flex flex-col items-center px-6 pb-10">
         <Image
-          src="/images/pembatas-bawah.webp"
+          src="/images/pembatas-1.webp"
           alt=""
           width={320}
           height={40}

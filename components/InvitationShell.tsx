@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Cover from "./Cover";
 import MusicPlayer from "./MusicPlayer";
 import BottomNav from "./BottomNav";
@@ -36,6 +37,23 @@ export default function InvitationShell({
           {/* Sparkle emas sebagai latar belakang — di belakang semua segment */}
           <Sparkles dense className="sparkle-dense z-0 opacity-90" />
           <main className="animate-fade-up relative z-10 pb-28">{children}</main>
+          {/* Ornamen sudut dasar halaman — nempel bawah, di belakang konten */}
+          <Image
+            src="/images/bunga-atas-korner.webp"
+            alt=""
+            width={340}
+            height={420}
+            aria-hidden
+            className="pointer-events-none absolute bottom-16 left-0 z-0 w-16 -scale-x-100 opacity-60"
+          />
+          <Image
+            src="/images/bunga-atas-korner.webp"
+            alt=""
+            width={340}
+            height={420}
+            aria-hidden
+            className="pointer-events-none absolute bottom-16 right-0 z-0 w-16 opacity-60"
+          />
           <BottomNav />
         </>
       )}

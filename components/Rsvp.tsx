@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Section from "./Section";
+import Select from "./Select";
 
 type RsvpEntry = { name: string; attending: boolean; count: number };
 
@@ -37,7 +38,7 @@ export default function Rsvp() {
     .reduce((sum, e) => sum + e.count, 0);
 
   return (
-    <Section id="rsvp" tone="panel" texture divider="svg" className="px-6">
+    <Section id="rsvp" tone="panel" texture divider="pembatas-4" flower={3} flowerSide="right" className="px-6">
       <h2 className="section-title">RSVP</h2>
       <div className="gold-panel mt-8 px-6 py-8">
         <p className="text-center text-sm text-cream-dim">
@@ -96,17 +97,16 @@ export default function Rsvp() {
                 <span className="text-xs tracking-wider text-cream-dim">
                   Jumlah tamu
                 </span>
-                <select
-                  value={count}
-                  onChange={(e) => setCount(Number(e.target.value))}
-                  className="mt-1 w-full rounded-xl border border-gold/30 bg-void/60 px-4 py-2.5 text-sm text-cream focus:border-gold focus:outline-none"
-                >
-                  {[1, 2, 3, 4, 5].map((n) => (
-                    <option key={n} value={n}>
-                      {n} orang
-                    </option>
-                  ))}
-                </select>
+                <div className="mt-1">
+                  <Select
+                    value={count}
+                    onChange={setCount}
+                    options={[1, 2, 3, 4, 5].map((n) => ({
+                      value: n,
+                      label: `${n} orang`,
+                    }))}
+                  />
+                </div>
               </label>
             )}
 

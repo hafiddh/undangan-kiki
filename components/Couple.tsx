@@ -91,7 +91,7 @@ function ProfileCard({
 
 export default function Couple() {
   return (
-    <Section id="mempelai" tone="void" divider="svg" className="px-6">
+    <Section id="mempelai" tone="void" divider="pembatas-2" className="px-6">
       <h2 className="section-title">The Couple</h2>
       <div className="mt-8 space-y-8">
         <ProfileCard person={wedding.bride} label="mempelai wanita" />

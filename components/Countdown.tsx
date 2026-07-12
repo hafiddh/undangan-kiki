@@ -35,7 +35,7 @@ export default function Countdown() {
   ];
 
   return (
-    <Section tone="panel" texture divider="svg" className="px-6">
+    <Section tone="panel" texture divider="pembatas-3" flower={2} flowerSide="left" className="px-6">
       <h2 className="section-title">Menuju Hari Bahagia</h2>
       <p
         className="mt-4 text-center text-lg italic text-cream-dim"

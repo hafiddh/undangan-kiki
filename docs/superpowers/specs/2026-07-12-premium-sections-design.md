@@ -88,7 +88,7 @@ Each section component swaps its inner `Reveal` for `Section` (or wraps). Global
 ## Reused webp
 
 - `ornamen-atas.webp` — recurring section-top accent (webp divider variant).
-- `pembatas-bawah.webp` — elegant divider variant.
+- `pembatas-1.webp` — elegant divider variant.
 - `bunga-kiri.webp` / `bunga-kanan.webp` — low-opacity side accents (Events, Gift).
 
 ## Non-goals

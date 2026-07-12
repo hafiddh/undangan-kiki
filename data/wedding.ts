@@ -41,34 +41,22 @@ export const wedding = {
     source: "QS. Ar-Rum : 21",
   },
 
-  events: [
-    {
-      name: "Akad Nikah",
-      icon: "ring" as const,
-      date: "Sabtu, 10 Oktober 2026",
-      time: "09.00 WIB",
-      venue: "Masjid Al-Ikhlas",
-      address: "Jl. Mawar No. 10, Surabaya",
-      mapsUrl: "https://maps.google.com/?q=Masjid+Al-Ikhlas+Surabaya",
-    },
-    {
-      name: "Resepsi",
-      icon: "flower" as const,
-      date: "Sabtu, 10 Oktober 2026",
-      time: "11.00 – 14.00 WIB",
-      venue: "Gedung Graha Rahayu",
-      address: "Jl. Mawar No. 10, Surabaya",
-      mapsUrl: "https://maps.google.com/?q=Gedung+Graha+Rahayu+Surabaya",
-    },
-  ],
+  // Akad & resepsi satu lokasi — ditampilkan gaya undangan fisik
+  acara: {
+    akad: "09.00 WIB s.d Selesai",
+    resepsi: "16.00 WIB s.d Selesai",
+    venue: "Kediaman Mempelai Wanita",
+    address: "Kepuhklagen, Wringinanom, Gresik",
+    mapsUrl: "https://maps.app.goo.gl/evnZUZdvXnhpPAPD7",
+  },
 
   gallery: [
-    "/images/gallery-1.svg",
-    "/images/gallery-2.svg",
-    "/images/gallery-3.svg",
-    "/images/gallery-4.svg",
-    "/images/gallery-5.svg",
-    "/images/gallery-6.svg",
+    "/images/galeri-1.webp",
+    "/images/galeri-2.webp",
+    "/images/galeri-3.webp",
+    "/images/galeri-4.webp",
+    "/images/galeri-5.webp",
+    "/images/galeri-6.webp",
   ],
 
   story: [
@@ -105,6 +93,5 @@ export const wedding = {
   music: "/music.mp3", // drop file mp3 kamu ke public/music.mp3
 } as const;
 
-export type WeddingEvent = (typeof wedding.events)[number];
 export type StoryItem = (typeof wedding.story)[number];
 export type GiftAccount = (typeof wedding.gifts)[number];

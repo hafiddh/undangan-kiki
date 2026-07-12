@@ -182,49 +182,50 @@ body {
    PREMIUM SECTIONS — alternating tone, texture, grain, ornaments
    ============================================================ */
 
-/* Tone dasar tiap section. void = gelap pekat, panel = coklat hangat */
-/* Tone sedikit tembus pandang supaya sparkle latar terlihat menembus */
+/* Tone menyambung jadi SATU halaman utuh:
+   - warna OPAQUE (tak ada alpha) supaya tak ada band dari body di belakang
+   - endpoint tiap section identik dgn tetangganya → nol garis potong:
+       void  : void → seam (bawah)
+       panel : seam → void (bawah)
+     jadi urutan void/panel/void… = gradient kontinu naik-turun halus
+   - kontras seam sangat tipis → tak terasa blok, cuma "napas" hangat
+   - tanpa radial glow di pucuk (dulu bikin garis terang tiap awal section) */
+/* Seam = campuran tipis panel→void (mendekati void) supaya batas nyaris
+   tak terlihat; warm cuma "napas" halus di tengah section. Plateau di dua
+   sisi tiap seam identik → nol garis potong. */
 .tone-void {
-  background:
-    radial-gradient(
-      120% 60% at 50% 0%,
-      color-mix(in srgb, var(--gold) 5%, transparent),
-      transparent 60%
-    ),
-    color-mix(in srgb, var(--void) 82%, transparent);
+  background: linear-gradient(
+    180deg,
+    var(--void) 0%,
+    var(--void) 45%,
+    color-mix(in srgb, var(--panel) 45%, var(--void)) 90%,
+    color-mix(in srgb, var(--panel) 45%, var(--void)) 100%
+  );
 }
 .tone-panel {
-  background:
-    radial-gradient(
-      120% 70% at 50% 0%,
-      color-mix(in srgb, var(--gold-bright) 7%, transparent),
-      transparent 65%
-    ),
-    linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--panel-warm-2) 85%, transparent),
-      color-mix(in srgb, var(--panel-warm) 85%, transparent)
-    );
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--panel) 45%, var(--void)) 0%,
+    color-mix(in srgb, var(--panel) 45%, var(--void)) 10%,
+    color-mix(in srgb, var(--panel-warm) 50%, var(--void)) 50%,
+    var(--void) 90%,
+    var(--void) 100%
+  );
 }
 
-/* Tekstur halus: grain noise + motif emas samar. Overlay tipis. */
+/* Tekstur halus: glow emas tengah sangat samar, tak menempel di tepi section. */
 .section-texture::before {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.5;
-  background-image:
-    radial-gradient(
-      circle at 50% 0,
-      color-mix(in srgb, var(--gold) 6%, transparent),
-      transparent 45%
-    ),
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'><g fill='none' stroke='%23d4af37' stroke-width='0.4' opacity='0.18'><path d='M20 6c4 4 4 10 0 14-4-4-4-10 0-14z'/><circle cx='20' cy='20' r='1'/></g></svg>");
-  background-size:
-    100% 100%,
-    120px 120px;
+  opacity: 0.35;
+  background-image: radial-gradient(
+    120% 60% at 50% 50%,
+    color-mix(in srgb, var(--gold) 3%, transparent),
+    transparent 70%
+  );
 }
 
 /* Film grain global — di atas seluruh body, sangat tipis */
@@ -270,6 +271,63 @@ body {
   animation: drift 9s ease-in-out infinite;
 }
 
+/* Masuk lightbox: backdrop fade + foto zoom halus */
+@keyframes lightbox-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes lightbox-zoom {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.animate-lightbox-fade {
+  animation: lightbox-fade 0.3s ease-out both;
+}
+.animate-lightbox-zoom {
+  animation: lightbox-zoom 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Buka dropdown Select */
+@keyframes select-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-select-in {
+  animation: select-in 0.16s ease-out both;
+}
+
+/* Kelip untuk sparkle webp di samping pembatas section */
+@keyframes twinkle-img {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+}
+.animate-twinkle-img {
+  animation: twinkle-img 3.2s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -277,6 +335,9 @@ body {
   .animate-fade-up,
   .animate-float,
   .animate-drift,
+  .animate-twinkle-img,
+  .animate-lightbox-fade,
+  .animate-lightbox-zoom,
   .shimmer,
   .hairline-gold,
   .sparkle {

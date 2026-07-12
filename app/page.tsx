@@ -32,7 +32,7 @@ export default async function Home({
       <Rsvp />
       <Gift />
       <Wishes />
-      <footer className="px-6 pb-10 pt-20 text-center">
+      <footer className="relative overflow-hidden px-6 pb-10 pt-20 text-center">
         <Image
           src="/images/logo.webp"
           alt={`Logo ${wedding.bride.nickname} & ${wedding.groom.nickname}`}

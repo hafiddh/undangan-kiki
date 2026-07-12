@@ -3,7 +3,7 @@ import Section from "./Section";
 
 export default function QuoteSection() {
   return (
-    <Section tone="panel" texture divider="svg" corner="vine" className="px-6">
+    <Section tone="panel" texture divider="pembatas-1" className="px-6">
       <figure className="gold-panel relative px-7 py-10 text-center">
         <span
           className="gold-text absolute -top-5 left-1/2 -translate-x-1/2 text-6xl leading-none"
