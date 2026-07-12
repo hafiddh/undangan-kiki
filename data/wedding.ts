@@ -9,24 +9,24 @@ export const wedding = {
   bride: {
     nickname: "Kiki",
     fullName: "Nur Chulukiah Munawaroh",
-    relation: "Putri bungsu dari", // label relasi di kartu couple
-    parents: "Bapak Fulan & Ibu Fulanah",
-    location: "", // opsional — mis. "dari Surabaya"
-    instagram: "kiki.example",
-    photo: "/images/bride.svg",
+    relation: "Putri dari", // label relasi di kartu couple
+    parents: "Bapak Anwar & (Almh.) Ibu Ngatminah",
+    location: "Wringinanom, Kabupaten Gresik", // opsional — mis. "dari Surabaya"
+    instagram: "https://www.instagram.com/nurchlkiah",
+    photo: "/images/pengantin-wanita.webp",
   },
   groom: {
     nickname: "Hafid",
     fullName: "Hafid Dwi Hibatullah",
     relation: "Putra dari",
     parents: "Bapak Ismuaji Sodiq & Ibu Siti Maimunah",
-    location: "",
-    instagram: "hafid.example",
-    photo: "/images/groom.svg",
+    location: "Mandonga, Kota Kendari",
+    instagram: "https://www.instagram.com/hafiddh",
+    photo: "/images/pengantin-pria.webp",
   },
 
   // Format ISO dengan offset WIB (+07:00) — dipakai countdown
-  date: "2026-08-30T09:00:00+07:00",
+  date: "2026-10-10T09:00:00+07:00",
   dateDisplay: "10 · 10 · 2026",
   dateLong: "Sabtu, 10 Oktober 2026",
 

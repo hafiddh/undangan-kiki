@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { wedding } from "@/data/wedding";
-import { WayangGunungan, FrameCorner } from "./Ornament";
+import { FrameCorner } from "./Ornament";
 import Section from "./Section";
 
 function ProfileCard({
@@ -41,9 +41,6 @@ function ProfileCard({
           <div className="relative px-6 pb-6 pt-4 text-center">
             {/* garis emas atas panel */}
             <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
-
-            {/* Wayang gunungan di kiri, sedikit naik ke area foto */}
-            <WayangGunungan className="animate-float pointer-events-none absolute -left-1 bottom-2 z-20 w-14 opacity-75" />
 
             <a
               href={`https://instagram.com/${person.instagram}`}
