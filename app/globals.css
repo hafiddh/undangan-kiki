@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+:root {
+  --void: #0a0806;
+  --panel: #14100a;
+  --panel-2: #1a140b;
+  --gold: #d4af37;
+  --gold-bright: #f5e6a8;
+  --gold-dim: #8a7440;
+  --cream: #e8dcc0;
+  --cream-dim: #a99e85;
+}
+
+@theme inline {
+  --color-void: var(--void);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-gold: var(--gold);
+  --color-gold-bright: var(--gold-bright);
+  --color-gold-dim: var(--gold-dim);
+  --color-cream: var(--cream);
+  --color-cream-dim: var(--cream-dim);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--void);
+  color: var(--cream);
+  font-family: var(--font-body), sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Teks gradien emas — nama mempelai, judul section */
+.gold-text {
+  background: linear-gradient(
+    115deg,
+    #a8842c 0%,
+    var(--gold) 30%,
+    var(--gold-bright) 50%,
+    var(--gold) 70%,
+    #a8842c 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Panel section: outline emas tipis + isi gelap lembut */
+.gold-panel {
+  background: linear-gradient(180deg, var(--panel-2), var(--panel));
+  border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent);
+  border-radius: 1.5rem;
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--gold-bright) 8%, transparent),
+    0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Judul section dengan garis kanan-kiri */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  justify-content: center;
+  color: var(--gold);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.section-title::before,
+.section-title::after {
+  content: "";
+  height: 1px;
+  width: 2.5rem;
+  background: linear-gradient(90deg, transparent, var(--gold-dim));
+}
+.section-title::after {
+  background: linear-gradient(90deg, var(--gold-dim), transparent);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes shimmer-sweep {
+  from {
+    background-position: 200% center;
+  }
+  to {
+    background-position: -200% center;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.9s ease-out both;
+}
+.animate-float {
+  animation: float-soft 4s ease-in-out infinite;
+}
+
+/* Shimmer di tombol utama */
+.shimmer {
+  background-image: linear-gradient(
+    115deg,
+    var(--gold) 25%,
+    var(--gold-bright) 50%,
+    var(--gold) 75%
+  );
+  background-size: 200% auto;
+  animation: shimmer-sweep 3.5s linear infinite;
+}
+
+/* Reveal on scroll — di-toggle IntersectionObserver */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s ease-out,
+    transform 0.8s ease-out;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-fade-up,
+  .animate-float,
+  .shimmer {
+    animation: none;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
