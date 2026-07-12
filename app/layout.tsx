@@ -5,6 +5,7 @@ import {
   Plus_Jakarta_Sans,
 } from "next/font/google";
 import { wedding } from "@/data/wedding";
+import { ToastProvider } from "@/components/Toast";
 import "./globals.css";
 
 const display = Cormorant_Garamond({
@@ -40,7 +41,9 @@ export default function RootLayout({
       lang="id"
       className={`${display.variable} ${script.variable} ${body.variable} h-full antialiased`}
     >
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        <ToastProvider>{children}</ToastProvider>
+      </body>
     </html>
   );
 }

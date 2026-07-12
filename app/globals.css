@@ -312,6 +312,36 @@ body {
   animation: select-in 0.16s ease-out both;
 }
 
+/* Toast muncul cepat dari bawah */
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.animate-toast-in {
+  animation: toast-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Toast menghilang ke bawah */
+@keyframes toast-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px) scale(0.94);
+  }
+}
+.animate-toast-out {
+  animation: toast-out 0.32s ease-in both;
+}
+
 /* Kelip untuk sparkle webp di samping pembatas section */
 @keyframes twinkle-img {
   0%,

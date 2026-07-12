@@ -3,17 +3,22 @@
 import { useState } from "react";
 import Image from "next/image";
 import { wedding, type GiftAccount } from "@/data/wedding";
+import { useToast } from "./Toast";
 import Section from "./Section";
 
 function AccountRow({ account }: { account: GiftAccount }) {
   const [copied, setCopied] = useState(false);
+  const toast = useToast();
 
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(account.number);
       setCopied(true);
+      toast("Nomor rekening tersalin");
       setTimeout(() => setCopied(false), 2000);
-    } catch {}
+    } catch {
+      toast("Gagal menyalin nomor", "error");
+    }
   };
 
   return (
@@ -33,7 +38,7 @@ function AccountRow({ account }: { account: GiftAccount }) {
         <p className="text-[0.7rem] font-bold uppercase tracking-wider text-gold">
           {account.bank}
         </p>
-        <p className="gold-text text-lg leading-tight tracking-wide tabular-nums">
+        <p className="gold-text text-base leading-tight tracking-normal tabular-nums">
           {account.number}
         </p>
         <p className="truncate text-[0.7rem] text-cream-dim">
@@ -44,13 +49,18 @@ function AccountRow({ account }: { account: GiftAccount }) {
       <button
         onClick={copy}
         aria-label={`Salin nomor ${account.bank}`}
-        className="flex shrink-0 items-center gap-1.5 rounded-full border border-gold/50 px-3 py-2 text-[0.7rem] font-semibold text-gold transition-colors hover:bg-gold/10"
+        className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-gold/50 text-gold transition-colors hover:bg-gold/10"
       >
-        <svg viewBox="0 0 24 24" className="w-3.5" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-          <rect x="9" y="9" width="11" height="11" rx="2" />
-          <path d="M5 15V5a2 2 0 012-2h10" />
-        </svg>
-        {copied ? "✓" : "Salin"}
+        {copied ? (
+          <svg viewBox="0 0 24 24" className="w-4" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden>
+            <path d="M20 6L9 17l-5-5" />
+          </svg>
+        ) : (
+          <svg viewBox="0 0 24 24" className="w-4" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+            <rect x="9" y="9" width="11" height="11" rx="2" />
+            <path d="M5 15V5a2 2 0 012-2h10" />
+          </svg>
+        )}
       </button>
     </div>
   );

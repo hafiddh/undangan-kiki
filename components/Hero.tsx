@@ -11,7 +11,7 @@ export default function Hero() {
       divider={false}
       corner="bungakorner"
       topPad="pt-8"
-      className="px-6 pb-14 text-center"
+      className="px-6 text-center"
     >
       {/* Sparkle acak khusus Hero */}
       <RandomSparkles count={22} className="z-0 opacity-90 sparkle-dense" />
