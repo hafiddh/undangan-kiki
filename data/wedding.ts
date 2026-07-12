@@ -92,7 +92,7 @@ export const wedding = {
     },
   ],
 
-  music: "/music.mp3", // drop file mp3 kamu ke public/music.mp3
+  music: "/music/music-1.mp3",
 } as const;
 
 export type StoryItem = (typeof wedding.story)[number];
