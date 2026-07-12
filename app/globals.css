@@ -136,6 +136,13 @@ body {
   animation: twinkle var(--dur, 4s) ease-in-out var(--delay, 0s) infinite;
 }
 
+/* Sparkle tebal untuk layout dalam — glow lebih besar & pekat */
+.sparkle-dense .sparkle {
+  box-shadow:
+    0 0 7px 2px color-mix(in srgb, var(--gold-bright) 75%, transparent),
+    0 0 14px 4px color-mix(in srgb, var(--gold) 35%, transparent);
+}
+
 .animate-fade-up {
   animation: fade-up 0.9s ease-out both;
 }
@@ -176,6 +183,7 @@ body {
    ============================================================ */
 
 /* Tone dasar tiap section. void = gelap pekat, panel = coklat hangat */
+/* Tone sedikit tembus pandang supaya sparkle latar terlihat menembus */
 .tone-void {
   background:
     radial-gradient(
@@ -183,7 +191,7 @@ body {
       color-mix(in srgb, var(--gold) 5%, transparent),
       transparent 60%
     ),
-    var(--void);
+    color-mix(in srgb, var(--void) 82%, transparent);
 }
 .tone-panel {
   background:
@@ -192,7 +200,11 @@ body {
       color-mix(in srgb, var(--gold-bright) 7%, transparent),
       transparent 65%
     ),
-    linear-gradient(180deg, var(--panel-warm-2), var(--panel-warm));
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--panel-warm-2) 85%, transparent),
+      color-mix(in srgb, var(--panel-warm) 85%, transparent)
+    );
 }
 
 /* Tekstur halus: grain noise + motif emas samar. Overlay tipis. */

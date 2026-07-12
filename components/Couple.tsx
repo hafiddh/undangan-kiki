@@ -10,6 +10,15 @@ function ProfileCard({
   person: typeof wedding.bride | typeof wedding.groom;
   label: string;
 }) {
+  // instagram bisa berupa handle atau URL penuh — normalisasi keduanya
+  const igHandle = person.instagram
+    .replace(/^https?:\/\/(www\.)?instagram\.com\//i, "")
+    .replace(/\/+$/, "")
+    .replace(/^@/, "");
+  const igUrl = /^https?:\/\//i.test(person.instagram)
+    ? person.instagram
+    : `https://instagram.com/${igHandle}`;
+
   return (
     <div className="relative">
       {/* Bingkai emas ornate */}
@@ -43,7 +52,7 @@ function ProfileCard({
             <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
 
             <a
-              href={`https://instagram.com/${person.instagram}`}
+              href={igUrl}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 text-xs text-gold transition-colors hover:text-gold-bright"
@@ -54,7 +63,7 @@ function ProfileCard({
                 <circle cx="12" cy="12" r="4" />
                 <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
               </svg>
-              @{person.instagram}
+              @{igHandle}
             </a>
 
             <h3

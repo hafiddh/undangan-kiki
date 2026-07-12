@@ -5,7 +5,7 @@ import { CornerVine, SectionDivider } from "./Ornament";
 
 type Tone = "void" | "panel";
 type Divider = "svg" | "webp" | false;
-type Corner = "vine" | "bunga" | false;
+type Corner = "vine" | "bunga" | "bungakorner" | false;
 
 // Pembungkus section: tone bg selang-seling + tekstur + ornamen pemisah/sudut.
 // Konten tetap dianimasikan lewat Reveal (scroll-in).
@@ -15,6 +15,7 @@ export default function Section({
   texture = false,
   divider = "svg",
   corner = false,
+  topPad = "pt-16",
   className = "",
   children,
 }: {
@@ -23,14 +24,14 @@ export default function Section({
   texture?: boolean;
   divider?: Divider;
   corner?: Corner;
+  topPad?: string;
   className?: string;
   children: React.ReactNode;
 }) {
   return (
     <section
-      className={`relative overflow-hidden pt-16 ${
-        tone === "panel" ? "tone-panel" : "tone-void"
-      } ${texture ? "section-texture" : ""}`}
+      className={`relative overflow-hidden ${topPad} ${tone === "panel" ? "tone-panel" : "tone-void"
+        } ${texture ? "section-texture" : ""}`}
     >
       {/* Ornamen sudut atas */}
       {corner === "vine" && (
@@ -39,6 +40,26 @@ export default function Section({
           <CornerVine
             flip
             className="animate-drift pointer-events-none absolute right-0 top-0 z-0 w-20 opacity-50"
+          />
+        </>
+      )}
+      {corner === "bungakorner" && (
+        <>
+          <Image
+            src="/images/bunga-atas-korner.webp"
+            alt=""
+            width={340}
+            height={420}
+            aria-hidden
+            className="pointer-events-none absolute left-0 top-0 z-0 w-16 -scale-100 opacity-60"
+          />
+          <Image
+            src="/images/bunga-atas-korner.webp"
+            alt=""
+            width={340}
+            height={420}
+            aria-hidden
+            className="pointer-events-none absolute right-0 top-0 z-0 w-16 -scale-y-100 opacity-60"
           />
         </>
       )}

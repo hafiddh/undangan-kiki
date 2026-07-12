@@ -25,6 +25,12 @@ export const wedding = {
     photo: "/images/pengantin-pria.webp",
   },
 
+  // Sambutan pembuka di Hero
+  intro: {
+    salam: "Assalamu'alaikum Warahmatullahi Wabarakatuh",
+    text: "Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyelenggarakan pernikahan kami. Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.",
+  },
+
   // Format ISO dengan offset WIB (+07:00) — dipakai countdown
   date: "2026-10-10T09:00:00+07:00",
   dateDisplay: "10 · 10 · 2026",

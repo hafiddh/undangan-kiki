@@ -1,3 +1,4 @@
+import Image from "next/image";
 import InvitationShell from "@/components/InvitationShell";
 import Hero from "@/components/Hero";
 import Couple from "@/components/Couple";
@@ -32,6 +33,13 @@ export default async function Home({
       <Gift />
       <Wishes />
       <footer className="px-6 pb-10 pt-20 text-center">
+        <Image
+          src="/images/logo.webp"
+          alt={`Logo ${wedding.bride.nickname} & ${wedding.groom.nickname}`}
+          width={480}
+          height={480}
+          className="mx-auto mb-4 w-32 opacity-90 drop-shadow-[0_0_20px_rgba(212,175,55,0.2)]"
+        />
         <p
           className="gold-text text-3xl"
           style={{ fontFamily: "var(--font-display)" }}

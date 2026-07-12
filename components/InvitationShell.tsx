@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Cover from "./Cover";
 import MusicPlayer from "./MusicPlayer";
 import BottomNav from "./BottomNav";
+import Sparkles from "./Sparkles";
 
 // Gate undangan: sebelum dibuka hanya cover yang tampil + scroll lock.
 // Setelah dibuka: konten reveal + musik mulai (user gesture).
@@ -32,7 +33,9 @@ export default function InvitationShell({
       ) : (
         <>
           <MusicPlayer autoStart={opened} />
-          <main className="animate-fade-up pb-28">{children}</main>
+          {/* Sparkle emas sebagai latar belakang — di belakang semua segment */}
+          <Sparkles dense className="sparkle-dense z-0 opacity-90" />
+          <main className="animate-fade-up relative z-10 pb-28">{children}</main>
           <BottomNav />
         </>
       )}
