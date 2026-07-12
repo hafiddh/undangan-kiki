@@ -84,7 +84,7 @@ export default function Wishes() {
           </button>
         </form>
 
-        <ul className="mt-8 max-h-80 space-y-4 overflow-y-auto pr-1">
+        <ul className="mt-8 max-h-80 space-y-4 overflow-y-auto pr-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {mounted &&
             wishes.map((wish) => (
               <li

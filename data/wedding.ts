@@ -79,14 +79,16 @@ export const wedding = {
 
   gifts: [
     {
-      bank: "BCA",
-      number: "1234567890",
+      bank: "Bank Jago",
+      number: "100515016530",
       holder: "Nur Chulukiah Munawaroh",
+      logo: "/images/jago-logo.webp",
     },
     {
-      bank: "Mandiri",
-      number: "0987654321",
+      bank: "BRI",
+      number: "185601002620501",
       holder: "Hafid Dwi Hibatullah",
+      logo: "/images/bri-logo.webp",
     },
   ],
 

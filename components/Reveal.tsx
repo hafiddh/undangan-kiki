@@ -31,7 +31,11 @@ export default function Reveal({
   }, []);
 
   return (
-    <div ref={ref} id={id} className={`reveal ${className}`}>
+    <div
+      ref={ref}
+      id={id}
+      className={`reveal ${id ? "scroll-mt-24" : ""} ${className}`}
+    >
       {children}
     </div>
   );
