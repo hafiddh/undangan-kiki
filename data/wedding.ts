@@ -61,19 +61,19 @@ export const wedding = {
 
   story: [
     {
-      year: "2020",
-      title: "Pertama Bertemu",
-      text: "Kami dipertemukan di tempat yang tak terduga. Percakapan singkat yang ternyata menjadi awal dari segalanya.",
+      year: "April 2026",
+      title: "Awal Sebuah Pertemuan",
+      text: "Segala sesuatu yang indah sering kali berawal dari cara yang sederhana. Pada bulan April 2026, kami dipertemukan melalui perantara paman yang dengan tulus mengenalkan kami satu sama lain. Meski belum pernah bertatap muka, percakapan pertama melalui telepon menjadi langkah awal dari sebuah perjalanan yang tak pernah kami bayangkan sebelumnya.\n\nSejak awal, kami sepakat bahwa perkenalan ini bukan sekadar untuk saling mengenal, melainkan dengan niat yang baik dan tujuan yang jelas: mencari pasangan hidup. Dari setiap percakapan yang terjalin, kami mulai menemukan kenyamanan, kecocokan, dan keyakinan bahwa Allah sedang mempertemukan kami pada waktu yang tepat.",
     },
     {
-      year: "2023",
-      title: "Menjalin Komitmen",
-      text: "Seiring waktu, kami semakin yakin untuk melangkah bersama dan saling menguatkan dalam setiap keadaan.",
+      year: "Juni 2026",
+      title: "Mengikat Janji dalam Lamaran",
+      text: "Seiring berjalannya waktu, komunikasi yang kami bangun menghadirkan rasa percaya dan keyakinan yang semakin kuat. Kami belajar memahami satu sama lain, menerima segala kelebihan dan kekurangan, serta memantapkan hati untuk melangkah ke tahap yang lebih serius.\n\nPada bulan Juni 2026, dengan restu kedua keluarga, kami mengikat komitmen melalui prosesi lamaran. Momen tersebut menjadi simbol kesungguhan kami untuk menjaga amanah, saling mendukung dalam setiap langkah, dan mempersiapkan diri menuju kehidupan baru sebagai pasangan suami istri.",
     },
     {
-      year: "2026",
-      title: "Menuju Halal",
-      text: "Dengan restu kedua orang tua, kami memutuskan menyempurnakan separuh agama.",
+      year: "Oktober 2026",
+      title: "Menuju Ikatan Suci",
+      text: "Setelah melalui perjalanan yang singkat namun penuh makna, kami meyakini bahwa setiap proses yang telah dilalui adalah bagian dari rencana terbaik-Nya. Dengan penuh rasa syukur, kami mantap melangkah menuju hari yang telah lama kami nantikan.\n\nPada bulan Oktober 2026, insyaAllah kami akan mengikat janji suci dalam akad pernikahan. Semoga ikatan ini menjadi awal dari perjalanan seumur hidup yang dipenuhi cinta, kasih sayang, keberkahan, dan ridha Allah SWT, hingga kelak bersama menua dalam kebahagiaan.",
     },
   ],
 

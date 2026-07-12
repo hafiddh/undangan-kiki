@@ -37,6 +37,7 @@ export default function Cover({
         width={340}
         height={420}
         aria-hidden
+        priority
         className="pointer-events-none absolute left-0 top-0 z-20 w-20 -scale-100 opacity-60"
       />
       <Image
@@ -45,6 +46,7 @@ export default function Cover({
         width={340}
         height={420}
         aria-hidden
+        priority
         className="pointer-events-none absolute right-0 top-0 z-20 w-20 -scale-y-100 opacity-60"
       />
       <Image

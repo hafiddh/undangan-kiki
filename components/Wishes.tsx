@@ -1,59 +1,69 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Section from "./Section";
+import VerifiedBadge from "./VerifiedBadge";
+import GoogleLoginButton from "./GoogleLoginButton";
+import { useToast } from "./Toast";
+import { createClient } from "@/lib/supabase/client";
+import { submitWish } from "@/app/actions/wishes";
+import type { Wish } from "@/lib/supabase/types";
 
-type Wish = { name: string; message: string; time: number };
-
-const KEY = "undangan-wishes";
-
-// Seed demo saat kosong — akan tergantikan data pengunjung
-const SEED: Wish[] = [
-  {
-    name: "Keluarga Besar",
-    message:
-      "Selamat menempuh hidup baru! Semoga menjadi keluarga sakinah, mawaddah, warahmah.",
-    time: Date.parse("2026-07-01T10:00:00+07:00"),
-  },
-  {
-    name: "Sahabat Kampus",
-    message: "Akhirnya! Bahagia selalu untuk kalian berdua ♥",
-    time: Date.parse("2026-07-02T14:30:00+07:00"),
-  },
-  {
-    name: "Rekan Kerja",
-    message: "Barakallahu laka wa baraka 'alaika. Lancar sampai hari H!",
-    time: Date.parse("2026-07-03T09:15:00+07:00"),
-  },
-];
+type Profile = { name: string; avatarUrl: string | null } | null;
 
 export default function Wishes() {
+  const toast = useToast();
   const [wishes, setWishes] = useState<Wish[]>([]);
   const [mounted, setMounted] = useState(false);
+  const [profile, setProfile] = useState<Profile>(null);
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
+  const [busy, setBusy] = useState(false);
+
+  const loadWishes = () => {
+    const supabase = createClient();
+    supabase
+      .from("wishes")
+      .select("*")
+      .eq("approved", true)
+      .order("created_at", { ascending: false })
+      .then(({ data }) => setWishes((data as Wish[]) ?? []));
+  };
 
   useEffect(() => {
     setMounted(true);
-    try {
-      const raw = localStorage.getItem(KEY);
-      setWishes(raw ? JSON.parse(raw) : SEED);
-    } catch {
-      setWishes(SEED);
-    }
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user) {
+        const m = user.user_metadata ?? {};
+        setProfile({
+          name: (m.full_name || m.name || user.email || "Tamu") as string,
+          avatarUrl: (m.avatar_url || m.picture || null) as string | null,
+        });
+      }
+    });
+    loadWishes();
   }, []);
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !message.trim()) return;
-    const next = [
-      { name: name.trim(), message: message.trim(), time: Date.now() },
-      ...wishes,
-    ];
-    setWishes(next);
-    localStorage.setItem(KEY, JSON.stringify(next));
-    setName("");
+    const finalName = profile?.name ?? name.trim();
+    if (!finalName || !message.trim()) return;
+    setBusy(true);
+    const res = await submitWish({ name: finalName, message: message.trim() });
+    setBusy(false);
+    if (!res.ok) {
+      toast(res.error, "error");
+      return;
+    }
     setMessage("");
+    if (res.approved) {
+      toast("Ucapan terkirim ♥");
+      loadWishes();
+    } else {
+      toast("Ucapan menunggu persetujuan admin", "info");
+    }
   };
 
   return (
@@ -61,13 +71,40 @@ export default function Wishes() {
       <h2 className="section-title">Wishes</h2>
       <div className="gold-panel mt-8 px-6 py-8">
         <form onSubmit={submit} className="space-y-3">
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-            placeholder="Nama Anda"
-            className="w-full rounded-xl border border-gold/30 bg-void/60 px-4 py-2.5 text-sm text-cream placeholder:text-cream-dim/50 focus:border-gold focus:outline-none"
-          />
+          {profile ? (
+            <div className="flex items-center justify-between rounded-xl border border-gold/30 bg-void/40 px-4 py-2.5">
+              <span className="flex items-center gap-2 text-sm text-cream">
+                {profile.avatarUrl && (
+                  <Image
+                    src={profile.avatarUrl}
+                    alt=""
+                    width={24}
+                    height={24}
+                    className="h-6 w-6 rounded-full object-cover"
+                    unoptimized
+                  />
+                )}
+                {profile.name}
+                <VerifiedBadge showLabel={false} />
+              </span>
+              <span className="text-[0.7rem] text-cream-dim">Google</span>
+            </div>
+          ) : (
+            <>
+              <input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                placeholder="Nama Anda"
+                className="w-full rounded-xl border border-gold/30 bg-void/60 px-4 py-2.5 text-sm text-cream placeholder:text-cream-dim/50 focus:border-gold focus:outline-none"
+              />
+              <GoogleLoginButton
+                next="/#wishes"
+                label="Login Google (opsional) — dapat centang terverifikasi"
+                className="w-full !text-xs"
+              />
+            </>
+          )}
           <textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}
@@ -78,9 +115,10 @@ export default function Wishes() {
           />
           <button
             type="submit"
-            className="shimmer w-full rounded-xl px-4 py-3 text-sm font-bold tracking-widest text-void"
+            disabled={busy}
+            className="shimmer w-full rounded-xl px-4 py-3 text-sm font-bold tracking-widest text-void disabled:opacity-60"
           >
-            Kirim Ucapan
+            {busy ? "Mengirim…" : "Kirim Ucapan"}
           </button>
         </form>
 
@@ -88,17 +126,33 @@ export default function Wishes() {
           {mounted &&
             wishes.map((wish) => (
               <li
-                key={wish.time + wish.name}
+                key={wish.id}
                 className="rounded-xl border border-gold/20 bg-void/40 p-4"
               >
-                <p className="text-sm font-semibold text-gold-bright">
+                <p className="flex items-center gap-2 text-sm font-semibold text-gold-bright">
+                  {wish.avatar_url && (
+                    <Image
+                      src={wish.avatar_url}
+                      alt=""
+                      width={24}
+                      height={24}
+                      className="h-6 w-6 rounded-full object-cover"
+                      unoptimized
+                    />
+                  )}
                   {wish.name}
+                  {wish.verified && <VerifiedBadge showLabel={false} />}
                 </p>
                 <p className="mt-1 text-sm leading-relaxed text-cream-dim">
                   {wish.message}
                 </p>
               </li>
             ))}
+          {mounted && wishes.length === 0 && (
+            <li className="text-center text-sm text-cream-dim">
+              Jadilah yang pertama memberi ucapan ♥
+            </li>
+          )}
         </ul>
       </div>
     </Section>

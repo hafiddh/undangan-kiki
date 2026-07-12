@@ -44,6 +44,7 @@ export default function InvitationShell({
           alt=""
           fill
           priority
+          sizes="100vw"
           className="scale-110 object-cover opacity-25 blur-2xl"
         />
         <div className="absolute inset-0 bg-void/85" />
@@ -68,6 +69,7 @@ export default function InvitationShell({
             alt=""
             fill
             priority
+            sizes="(min-width: 1024px) 67vw, 100vw"
             className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-void/85 via-void/65 to-void/90" />

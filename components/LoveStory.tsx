@@ -22,7 +22,7 @@ export default function LoveStory() {
               <h3 className="mt-1 text-sm font-bold tracking-wider text-gold-bright">
                 {item.title}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-cream-dim">
+              <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-cream-dim">
                 {item.text}
               </p>
             </li>

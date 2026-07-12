@@ -3,39 +3,58 @@
 import { useEffect, useState } from "react";
 import Section from "./Section";
 import Select from "./Select";
+import VerifiedBadge from "./VerifiedBadge";
+import GoogleLoginButton from "./GoogleLoginButton";
+import { useToast } from "./Toast";
+import { createClient } from "@/lib/supabase/client";
+import { submitRsvp, getRsvpStats } from "@/app/actions/rsvp";
 
-type RsvpEntry = { name: string; attending: boolean; count: number };
-
-const KEY = "undangan-rsvp";
+type Profile = { name: string; email: string | null } | null;
 
 export default function Rsvp() {
-  const [entries, setEntries] = useState<RsvpEntry[]>([]);
+  const toast = useToast();
+  const [profile, setProfile] = useState<Profile>(null);
   const [name, setName] = useState("");
   const [attending, setAttending] = useState(true);
   const [count, setCount] = useState(1);
   const [sent, setSent] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [totalHadir, setTotalHadir] = useState(0);
 
-  // load setelah mount — hindari hydration mismatch
+  // Session Google (opsional) + statistik kehadiran saat mount.
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem(KEY);
-      if (raw) setEntries(JSON.parse(raw));
-    } catch {}
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user) {
+        const m = user.user_metadata ?? {};
+        setProfile({
+          name: (m.full_name || m.name || user.email || "Tamu") as string,
+          email: user.email ?? null,
+        });
+      }
+    });
+    getRsvpStats().then((s) => setTotalHadir(s.total_guests));
   }, []);
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim()) return;
-    const next = [...entries, { name: name.trim(), attending, count }];
-    setEntries(next);
-    localStorage.setItem(KEY, JSON.stringify(next));
-    setName("");
+    const finalName = profile?.name ?? name.trim();
+    if (!finalName) return;
+    setBusy(true);
+    const res = await submitRsvp({
+      name: finalName,
+      attending,
+      guest_count: count,
+    });
+    setBusy(false);
+    if (!res.ok) {
+      toast(res.error, "error");
+      return;
+    }
     setSent(true);
+    toast("Konfirmasi tersimpan ♥");
+    getRsvpStats().then((s) => setTotalHadir(s.total_guests));
   };
-
-  const totalHadir = entries
-    .filter((e) => e.attending)
-    .reduce((sum, e) => sum + e.count, 0);
 
   return (
     <Section id="rsvp" tone="panel" texture divider="pembatas-4" flower={3} flowerSide="right" className="px-6">
@@ -54,16 +73,33 @@ export default function Rsvp() {
           </p>
         ) : (
           <form onSubmit={submit} className="mt-6 space-y-4">
-            <label className="block">
-              <span className="text-xs tracking-wider text-cream-dim">Nama</span>
-              <input
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                placeholder="Nama Anda"
-                className="mt-1 w-full rounded-xl border border-gold/30 bg-void/60 px-4 py-2.5 text-sm text-cream placeholder:text-cream-dim/50 focus:border-gold focus:outline-none"
-              />
-            </label>
+            {profile ? (
+              <div className="flex items-center justify-between rounded-xl border border-gold/30 bg-void/40 px-4 py-2.5">
+                <span className="flex items-center gap-2 text-sm text-cream">
+                  {profile.name}
+                  <VerifiedBadge showLabel={false} />
+                </span>
+                <span className="text-[0.7rem] text-cream-dim">Google</span>
+              </div>
+            ) : (
+              <>
+                <label className="block">
+                  <span className="text-xs tracking-wider text-cream-dim">Nama</span>
+                  <input
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                    placeholder="Nama Anda"
+                    className="mt-1 w-full rounded-xl border border-gold/30 bg-void/60 px-4 py-2.5 text-sm text-cream placeholder:text-cream-dim/50 focus:border-gold focus:outline-none"
+                  />
+                </label>
+                <GoogleLoginButton
+                  next="/#rsvp"
+                  label="Login Google (opsional) — dapat centang terverifikasi"
+                  className="w-full !text-xs"
+                />
+              </>
+            )}
 
             <div className="grid grid-cols-2 gap-3">
               <button
@@ -112,9 +148,10 @@ export default function Rsvp() {
 
             <button
               type="submit"
-              className="shimmer w-full rounded-xl px-4 py-3 text-sm font-bold tracking-widest text-void"
+              disabled={busy}
+              className="shimmer w-full rounded-xl px-4 py-3 text-sm font-bold tracking-widest text-void disabled:opacity-60"
             >
-              Kirim Konfirmasi
+              {busy ? "Menyimpan…" : "Kirim Konfirmasi"}
             </button>
           </form>
         )}
