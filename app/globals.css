@@ -116,11 +116,22 @@ body {
 @keyframes twinkle {
   0%,
   100% {
-    opacity: 0.15;
+    opacity: 0.05;
+    transform: scale(0.7);
   }
   50% {
-    opacity: 0.9;
+    opacity: 0.55;
+    transform: scale(1);
   }
+}
+
+/* Bintang sparkle latar — tiap titik pakai --dur & --delay sendiri */
+.sparkle {
+  position: absolute;
+  border-radius: 9999px;
+  background: var(--gold-bright);
+  box-shadow: 0 0 4px 1px color-mix(in srgb, var(--gold-bright) 60%, transparent);
+  animation: twinkle var(--dur, 4s) ease-in-out var(--delay, 0s) infinite;
 }
 
 .animate-fade-up {
@@ -161,7 +172,8 @@ body {
   }
   .animate-fade-up,
   .animate-float,
-  .shimmer {
+  .shimmer,
+  .sparkle {
     animation: none;
   }
   .reveal {

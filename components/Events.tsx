@@ -23,9 +23,12 @@ function FlowerIcon() {
 
 function EventCard({ event }: { event: WeddingEvent }) {
   return (
-    <div className="flex flex-col items-center rounded-2xl border border-gold/25 bg-void/40 px-5 py-7 text-center">
+    <div className="gold-panel flex flex-col items-center px-6 py-10 text-center">
       {event.icon === "ring" ? <RingIcon /> : <FlowerIcon />}
-      <h3 className="mt-3 text-sm font-bold uppercase tracking-[0.25em] text-gold">
+      <h3
+        className="gold-text mt-3 text-3xl"
+        style={{ fontFamily: "var(--font-display)" }}
+      >
         {event.name}
       </h3>
       <p className="mt-3 text-sm text-cream">{event.date}</p>
@@ -58,7 +61,7 @@ export default function Events() {
   return (
     <Reveal id="acara" className="px-6 pt-20">
       <h2 className="section-title">Detail Acara</h2>
-      <div className="gold-panel mt-8 grid gap-5 p-5 sm:grid-cols-2">
+      <div className="mt-8 space-y-6">
         {wedding.events.map((event) => (
           <EventCard key={event.name} event={event} />
         ))}

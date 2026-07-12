@@ -16,18 +16,18 @@ export const wedding = {
   groom: {
     nickname: "Hafid",
     fullName: "Hafid Dwi Hibatullah",
-    parents: "Putra dari Bapak Fulan & Ibu Fulanah",
+    parents: "Putra dari Bapak Ismuaji Sodiq & Ibu Siti Maimunah",
     instagram: "hafid.example",
     photo: "/images/groom.svg",
   },
 
   // Format ISO dengan offset WIB (+07:00) — dipakai countdown
   date: "2026-08-30T09:00:00+07:00",
-  dateDisplay: "30 · 08 · 2026",
-  dateLong: "Sabtu, 30 Agustus 2026",
+  dateDisplay: "10 · 10 · 2026",
+  dateLong: "Sabtu, 10 Oktober 2026",
 
   quote: {
-    text: "“Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang.”",
+    text: "“Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya diantaramu rasa kasih dan sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berfikir.”",
     source: "QS. Ar-Rum : 21",
   },
 
@@ -35,7 +35,7 @@ export const wedding = {
     {
       name: "Akad Nikah",
       icon: "ring" as const,
-      date: "Sabtu, 30 Agustus 2026",
+      date: "Sabtu, 10 Oktober 2026",
       time: "09.00 WIB",
       venue: "Masjid Al-Ikhlas",
       address: "Jl. Mawar No. 10, Surabaya",
@@ -44,7 +44,7 @@ export const wedding = {
     {
       name: "Resepsi",
       icon: "flower" as const,
-      date: "Sabtu, 30 Agustus 2026",
+      date: "Sabtu, 10 Oktober 2026",
       time: "11.00 – 14.00 WIB",
       venue: "Gedung Graha Rahayu",
       address: "Jl. Mawar No. 10, Surabaya",

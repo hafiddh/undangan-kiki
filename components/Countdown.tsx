@@ -36,7 +36,13 @@ export default function Countdown() {
 
   return (
     <Reveal className="px-6 pt-16">
-      <h2 className="section-title">Countdown</h2>
+      <h2 className="section-title">Menuju Hari Bahagia</h2>
+      <p
+        className="mt-4 text-center text-lg italic text-cream-dim"
+        style={{ fontFamily: "var(--font-display)" }}
+      >
+        {wedding.dateLong}
+      </p>
       <div className="gold-panel mt-6 grid grid-cols-4 divide-x divide-gold/20 py-6">
         {items.map(([label, value]) => (
           <div key={label} className="flex flex-col items-center">

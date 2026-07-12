@@ -22,12 +22,12 @@ export default async function Home({
   return (
     <InvitationShell guest={guest}>
       <Hero />
-      <Couple />
       <QuoteSection />
+      <Couple />
+      <LoveStory />
+      <Gallery />
       <Countdown />
       <Events />
-      <Gallery />
-      <LoveStory />
       <Rsvp />
       <Gift />
       <Wishes />

@@ -55,12 +55,20 @@ export default function Couple() {
   return (
     <Reveal id="mempelai" className="px-6 pt-20">
       <h2 className="section-title">The Couple</h2>
-      <div className="gold-panel mt-8 flex flex-col items-center gap-12 px-6 py-12">
-        <Profile person={wedding.bride} label="mempelai wanita" />
-        <div className="gold-text text-3xl" style={{ fontFamily: "var(--font-display)" }} aria-hidden>
+      <div className="mt-8 space-y-8">
+        <div className="gold-panel px-6 py-12">
+          <Profile person={wedding.bride} label="mempelai wanita" />
+        </div>
+        <div
+          className="gold-text text-center text-3xl"
+          style={{ fontFamily: "var(--font-display)" }}
+          aria-hidden
+        >
           ♥
         </div>
-        <Profile person={wedding.groom} label="mempelai pria" />
+        <div className="gold-panel px-6 py-12">
+          <Profile person={wedding.groom} label="mempelai pria" />
+        </div>
       </div>
     </Reveal>
   );
