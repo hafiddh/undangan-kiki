@@ -73,7 +73,7 @@ export const wedding = {
     {
       year: "Oktober 2026",
       title: "Menuju Ikatan Suci",
-      text: "Setelah melalui perjalanan yang singkat namun penuh makna, kami meyakini bahwa setiap proses yang telah dilalui adalah bagian dari rencana terbaik-Nya. Dengan penuh rasa syukur, kami mantap melangkah menuju hari yang telah lama kami nantikan.\n\nPada bulan Oktober 2026, insyaAllah kami akan mengikat janji suci dalam akad pernikahan. Semoga ikatan ini menjadi awal dari perjalanan seumur hidup yang dipenuhi cinta, kasih sayang, keberkahan, dan ridha Allah SWT, hingga kelak bersama menua dalam kebahagiaan.",
+      text: "Setelah melalui perjalanan yang singkat namun penuh makna, kami meyakini bahwa setiap proses yang telah dilalui adalah bagian dari rencana terbaik-Nya. Dengan penuh rasa syukur, kami mantap melangkah menuju hari yang telah kami nantikan.\n\nPada bulan Oktober 2026, insyaAllah kami akan mengikat janji suci dalam akad pernikahan. Semoga ikatan ini menjadi awal dari perjalanan seumur hidup yang dipenuhi cinta, kasih sayang, keberkahan, dan ridha Allah SWT, hingga kelak bersama menua dalam kebahagiaan.",
     },
   ],
 

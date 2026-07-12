@@ -51,7 +51,7 @@ export default function Gallery() {
             />
             <span
               aria-hidden
-              className="pointer-events-none absolute inset-0 bg-void/55 mix-blend-multiply transition-opacity duration-500 group-hover:opacity-0 group-focus-visible:opacity-0"
+              className="pointer-events-none absolute inset-0 bg-void/70 mix-blend-multiply transition-opacity duration-500 group-hover:opacity-0 group-focus-visible:opacity-0"
             />
           </button>
         ))}
