@@ -16,7 +16,7 @@ export default function Cover({
       {/* Foto couple full-bleed — judul & nama sudah menyatu di foto */}
       <Image
         src="/images/bg-depan.webp"
-        alt={`${wedding.bride.nickname} & ${wedding.groom.nickname}`}
+        alt={`${wedding.groom.nickname} & ${wedding.bride.nickname}`}
         fill
         loading="eager"
         fetchPriority="high"
@@ -88,9 +88,9 @@ export default function Cover({
           className="gold-text animate-fade-up mt-0.5 flex items-baseline justify-center gap-1 overflow-visible px-4 py-2 leading-[1.35]"
           style={{ fontFamily: "var(--font-script)", animationDelay: "0.2s" }}
         >
-          <span className="px-1 text-[3.5rem]">{wedding.bride.nickname}</span>
-          <span className="text-3xl">&amp;</span>
           <span className="px-1 text-[3.5rem]">{wedding.groom.nickname}</span>
+          <span className="text-3xl">&amp;</span>
+          <span className="px-1 text-[3.5rem]">{wedding.bride.nickname}</span>
         </h1>
         <p
           className="animate-fade-up -mt-2 text-xl tracking-[0.4em] text-gold"

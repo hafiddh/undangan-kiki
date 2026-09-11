@@ -36,7 +36,7 @@ export default function Hero() {
       {/* Logo monogram */}
       <Image
         src="/images/logo.webp"
-        alt={`Logo ${wedding.bride.nickname} & ${wedding.groom.nickname}`}
+        alt={`Logo ${wedding.groom.nickname} & ${wedding.bride.nickname}`}
         width={480}
         height={480}
         priority
@@ -47,8 +47,8 @@ export default function Hero() {
         className="gold-text mt-4 text-5xl leading-snug"
         style={{ fontFamily: "var(--font-script)" }}
       >
-        {wedding.bride.nickname} <span className="italic">&amp;</span>{" "}
-        {wedding.groom.nickname}
+        {wedding.groom.nickname} <span className="italic">&amp;</span>{" "}
+        {wedding.bride.nickname}
       </h2> */}
       <Image
         src="/images/pembatas-1.webp"

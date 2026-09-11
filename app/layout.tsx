@@ -27,8 +27,8 @@ const body = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: `The Wedding of ${wedding.bride.nickname} & ${wedding.groom.nickname}`,
-  description: `Undangan pernikahan ${wedding.bride.nickname} & ${wedding.groom.nickname} — ${wedding.dateLong}`,
+  title: `The Wedding of ${wedding.groom.nickname} & ${wedding.bride.nickname}`,
+  description: `Undangan pernikahan ${wedding.groom.nickname} & ${wedding.bride.nickname} — ${wedding.dateLong}`,
 };
 
 export default function RootLayout({
@@ -40,6 +40,7 @@ export default function RootLayout({
     <html
       lang="id"
       className={`${display.variable} ${script.variable} ${body.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="min-h-full">
         <ToastProvider>{children}</ToastProvider>

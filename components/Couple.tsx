@@ -94,7 +94,7 @@ export default function Couple() {
     <Section id="mempelai" tone="void" divider="pembatas-2" className="px-6">
       <h2 className="section-title">The Couple</h2>
       <div className="mt-8 space-y-8">
-        <ProfileCard person={wedding.bride} label="mempelai wanita" />
+        <ProfileCard person={wedding.groom} label="mempelai pria" />
         <div
           className="gold-text text-center text-3xl"
           style={{ fontFamily: "var(--font-display)" }}
@@ -102,7 +102,7 @@ export default function Couple() {
         >
           &amp;
         </div>
-        <ProfileCard person={wedding.groom} label="mempelai pria" />
+        <ProfileCard person={wedding.bride} label="mempelai wanita" />
       </div>
     </Section>
   );

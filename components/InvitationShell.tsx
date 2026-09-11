@@ -87,7 +87,7 @@ export default function InvitationShell({
             />
             <Image
               src="/images/logo.webp"
-              alt={`Logo ${wedding.bride.nickname} & ${wedding.groom.nickname}`}
+              alt={`Logo ${wedding.groom.nickname} & ${wedding.bride.nickname}`}
               width={480}
               height={480}
               className="mt-6 w-40 drop-shadow-[0_0_25px_rgba(212,175,55,0.25)] xl:w-48"
@@ -96,7 +96,7 @@ export default function InvitationShell({
               className="gold-text mt-4 whitespace-nowrap px-4 text-6xl leading-tight xl:text-7xl"
               style={{ fontFamily: "var(--font-script)" }}
             >
-              {wedding.bride.nickname} &amp; {wedding.groom.nickname}
+              {wedding.groom.nickname} &amp; {wedding.bride.nickname}
             </h1>
             <Image
               src="/images/pembatas-1.webp"

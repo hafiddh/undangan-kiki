@@ -35,7 +35,7 @@ export default async function Home({
       <footer className="relative overflow-hidden px-6 pb-10 pt-20 text-center">
         <Image
           src="/images/logo.webp"
-          alt={`Logo ${wedding.bride.nickname} & ${wedding.groom.nickname}`}
+          alt={`Logo ${wedding.groom.nickname} & ${wedding.bride.nickname}`}
           width={480}
           height={480}
           className="mx-auto mb-4 w-32 opacity-90 drop-shadow-[0_0_20px_rgba(212,175,55,0.2)]"
@@ -44,7 +44,7 @@ export default async function Home({
           className="gold-text text-3xl"
           style={{ fontFamily: "var(--font-display)" }}
         >
-          {wedding.bride.nickname} &amp; {wedding.groom.nickname}
+          {wedding.groom.nickname} &amp; {wedding.bride.nickname}
         </p>
         <p className="mt-2 text-xs tracking-widest text-cream-dim">
           Terima kasih atas doa &amp; restu Anda
