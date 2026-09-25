@@ -1,26 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { wedding } from "@/data/wedding";
 
-// Player floating. Autoplay dipicu prop `autoStart` (setelah user klik
-// "Buka Undangan" — legal karena user gesture). Kalau public/music.mp3
-// belum ada, tombol disembunyikan.
-export default function MusicPlayer({ autoStart }: { autoStart: boolean }) {
+// Player floating. Musik default MATI — hanya bunyi kalau user klik tombol
+// (tidak ada autoplay). Kalau public/music.mp3 belum ada, tombol disembunyikan.
+export default function MusicPlayer() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
   const [available, setAvailable] = useState(true);
-
-  useEffect(() => {
-    if (!autoStart) return;
-    const audio = audioRef.current;
-    if (!audio) return;
-    audio.volume = 0.5; // mulai di 50%
-    audio.play().then(
-      () => setPlaying(true),
-      () => setPlaying(false),
-    );
-  }, [autoStart]);
 
   const toggle = () => {
     const audio = audioRef.current;

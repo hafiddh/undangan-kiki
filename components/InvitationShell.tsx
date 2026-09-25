@@ -9,7 +9,7 @@ import BottomNav from "./BottomNav";
 import Sparkles from "./Sparkles";
 
 // Gate undangan: sebelum dibuka hanya cover yang tampil + scroll lock.
-// Setelah dibuka: konten reveal + musik mulai (user gesture).
+// Setelah dibuka: konten reveal. Musik default mati, user klik tombol dulu.
 // Desktop (lg+): saat sudah dibuka, layout jadi split-screen — panel kiri
 // diam (cover) + kolom undangan yang scroll di kanan.
 export default function InvitationShell({
@@ -121,7 +121,7 @@ export default function InvitationShell({
             <Cover guest={guest} onOpen={() => setOpened(true)} />
           ) : (
             <>
-              <MusicPlayer autoStart={opened} />
+              <MusicPlayer />
               {/* Sparkle emas sebagai latar belakang */}
               <Sparkles dense className="sparkle-dense z-0 opacity-90" />
               <main className="animate-fade-up relative z-10 pb-28">
